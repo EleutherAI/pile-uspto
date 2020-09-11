@@ -7,12 +7,6 @@ BASE_URL = 'https://bulkdata.uspto.gov/data/patent/grant/redbook/fulltext/'
 
 METADATA_CATEGORIES = ['INVT', 'ASSG', 'CLAS', 'URL', 'ABST']
 
-archive = lmd.Archive('out')
-archive = extract_pre_2002(archive)
-archive = extract_2002_to_2004(archive)
-archive = extract_post_2004(archive)
-archive.commit()
-
 def extract_pre_2002(archive):
   for year in range(1976, 2002):
     print(f"Extracting patents from {year}")
@@ -122,3 +116,9 @@ def extract_post_2004(archive):
           text = '\n'.join(text_list)
           archive.add_data(text, meta=metadata)
   return archive
+
+archive = lmd.Archive('out')
+archive = extract_pre_2002(archive)
+archive = extract_2002_to_2004(archive)
+archive = extract_post_2004(archive)
+archive.commit()
