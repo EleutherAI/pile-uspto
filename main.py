@@ -54,7 +54,7 @@ def extract_pre_2002(archive):
         if len(text_list) > 0:
           text = '\n'.join(text_list)
           archive.add_data(text, meta=metadata)
-      archive.commit()
+    archive.commit(archive_name=str(year))
   return archive
 
 def extract_2002_to_2004(archive):
@@ -78,7 +78,7 @@ def extract_2002_to_2004(archive):
         if len(text_list) > 0:
           text = '\n'.join(text_list)
           archive.add_data(text, meta=metadata)
-      archive.commit()
+    archive.commit(archive_name=str(year))
   return archive
 
 def extract_post_2004(archive):
@@ -117,7 +117,7 @@ def extract_post_2004(archive):
         if len(text_list) > 0:
           text = '\n'.join(text_list)
           archive.add_data(text, meta=metadata)
-      archive.commit()
+    archive.commit(archive_name=str(year))
   return archive
 
 archive = lmd.Archive('out')
