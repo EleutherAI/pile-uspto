@@ -97,6 +97,11 @@ def extract_post_2004(archive):
         continue
       for datum in data:
         metadata = { key: datum[key] for key in datum if key != 'detailed_description' }
+        # International classifications sometimes lead to ValueErrors otherwise
+        if 'classifications' in metadata:
+          classifications = metadata['classifications']
+          classifications.pop('classifications_ipcr_list', None)
+          metadata['classifications'] = classifications
         text_list = None
         if 'detailed_description' not in datum:
           continue
